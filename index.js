@@ -9,6 +9,9 @@
          result();
       });
 data = {}
+if(localStorage.length > 0){
+   data = {...JSON.parse(localStorage.getItem("key"))}
+}
       function result() {
          calculationResult = parseInt(yourchoice.value) * parseInt(selectedOption.value)
          console.log(parseInt(yourchoice.value) * parseInt(selectedOption.value));
