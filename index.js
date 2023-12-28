@@ -1,8 +1,7 @@
-// console.log(document.getElementById('numberlist').value)
 
-// document.getElementById('numberlist')
   var yourchoice = document.getElementById('yourchoice');
       var selectedOption = document.getElementById('numberlist');
+      history = document.getElementById("history")
 
       selectedOption.addEventListener('change', function(ev) {
          console.log(ev.target.value);
@@ -17,19 +16,19 @@ if(localStorage.length > 0){
          console.log(parseInt(yourchoice.value) * parseInt(selectedOption.value));
          data[`${selectedOption.value} * ${yourchoice.value}`] = calculationResult;
          localStorage.setItem("key" , JSON.stringify(data));
-       
-   
+        
+         updateHistory()
       };
-      localStorage.getItem("key");
-      // localStorage.clear()
-   // var jsonData = {
-   //          yourChoiceValue: parseInt(yourchoice.value),
-   //          selectedOptionValue: parseInt(selectedOption.value),
-   //          result: calculationResult
-   //       };
-
-   //       // Convert the object to a JSON-formatted string
-   //       var jsonString = JSON.stringify(jsonData);
-
-   //       // Log the JSON string
-   //       console.log(jsonString);
+      
+      function updateHistory() {
+         let txt = "";
+         for (let x in data) {
+             txt += `${x} = ${data[x]}<br>`;
+         }
+         document.getElementById("history").innerHTML = txt;
+     }
+     
+     // Don't need this line, it doesn't do anything useful
+     // localStorage.getItem("key");
+     
+     updateHistory();
